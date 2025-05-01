@@ -21,4 +21,3 @@ public class BibliotecaService {
         return bibliotecaRepository.findAll();
     }
 }
-

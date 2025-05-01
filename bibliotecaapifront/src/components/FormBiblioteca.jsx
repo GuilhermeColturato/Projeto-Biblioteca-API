@@ -3,7 +3,6 @@ import api from "../services/api";
 
 function FormBiblioteca() {
   const [biblioteca, setBiblioteca] = useState({
-    id: "",
     livro: { id: "" },
     dataCadastro: "",
   });
@@ -35,12 +34,13 @@ function FormBiblioteca() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Dados enviados:", biblioteca); // Verifique o que está sendo enviado
     try {
       await api.post("/bibliotecas", biblioteca);
       alert("Biblioteca cadastrada com sucesso!");
-      setBiblioteca({ id: "", livro: { id: "" }, dataCadastro: "" });
+      setBiblioteca({ livro: { id: "" }, dataCadastro: "" }); // Resetando os campos
     } catch (error) {
-      console.error(error);
+      console.error("Erro ao cadastrar biblioteca:", error.response?.data || error.message);
       alert("Erro ao cadastrar biblioteca.");
     }
   };
@@ -49,7 +49,7 @@ function FormBiblioteca() {
     <div>
       <h2>Cadastrar Biblioteca</h2>
       <form onSubmit={handleSubmit}>
-        <input type="text" name="id" placeholder="ID" value={biblioteca.id} onChange={handleChange} required />
+        {/* Removido o campo de ID */}
         
         <select name="livro" value={biblioteca.livro.id} onChange={handleChange} required>
           <option value="">Selecione um Livro</option>

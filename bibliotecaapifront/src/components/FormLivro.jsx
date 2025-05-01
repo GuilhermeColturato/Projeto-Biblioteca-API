@@ -28,6 +28,7 @@ function FormLivro() {
     }
 
     try {
+      console.log("Dados enviados:", livro);
       await api.post("/livros", livro);
       alert("Livro cadastrado com sucesso!");
       setLivro({

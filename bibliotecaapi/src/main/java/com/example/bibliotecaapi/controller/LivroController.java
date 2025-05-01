@@ -20,7 +20,12 @@ public class LivroController {
 
     @PostMapping
     public Livro criarLivro(@RequestBody Livro livro) {
-        logger.info("Recebido livro: " + livro);
+        logger.info("Recebido livro: " +
+                "nome=" + livro.getNome() +
+                ", autor=" + livro.getAutor() +
+                ", qtdPaginas=" + livro.getQtdPaginas() +
+                ", tipo=" + livro.getTipo());
+
         return livroService.salvar(livro);
     }
 
